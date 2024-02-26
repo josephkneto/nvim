@@ -1,0 +1,35 @@
+require('nvim-treesitter.configs').setup({
+    ensure_installed = {
+        'vim',
+        'bash',
+        'markdown',
+        'markdown_inline',
+        'c',
+        'cpp',
+        'css',
+        'dockerfile',
+        'go',
+        'gomod',
+        'html',
+        'java',
+        'javascript',
+        'json',
+        'jsonc',
+        'lua',
+        'python',
+        'regex',
+        'rust',
+        'toml',
+        'typescript',
+        'yaml',
+    },
+    -- Install parsers synchronously (only applied to `ensure_installed`)
+    sync_install = false,
+    auto_install = true,
+    highlight = {
+        enable = true,
+    },
+    autotag = {
+        enable = true,
+    },
+})
