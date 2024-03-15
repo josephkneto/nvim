@@ -101,3 +101,6 @@ vim.api.nvim_create_autocmd('TermOpen', {
         map(0, 'n', 'q', ':q<CR>', { noremap = true, silent = true })
     end
 })
+
+bind('>', '>gv', 'v')
+bind('<', '<gv', 'v')

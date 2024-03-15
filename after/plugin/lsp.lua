@@ -1,4 +1,5 @@
 local lsp = require('lsp-zero').preset()
+local cmp_nvim_lsp = require('cmp_nvim_lsp')
 
 lsp.use('lua_ls', {
     settings = {
@@ -7,6 +8,15 @@ lsp.use('lua_ls', {
                 globals = { 'vim' },
             },
         },
+    },
+})
+
+lsp.use('clangd', {
+    capabilities = cmp_nvim_lsp.default_capabilities(),
+    cmd = {
+        'clangd',
+        '--offset-encoding=utf-16',
+        '--fallback-style=webkit',
     },
 })
 
