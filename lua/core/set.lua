@@ -19,14 +19,14 @@ vim.opt.laststatus = 3
 
 -- wsl clipboard
 vim.g.clipboard = {
-    name = 'WslClipboard',
+    name = "xclip",
     copy = {
-        ['+'] = 'clip.exe',
-        ['*'] = 'clip.exe',
+      ["+"] = "xclip -selection clipboard",
+      ["*"] = "xclip -selection primary",
     },
     paste = {
-        ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-        ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      ["+"] = "xclip -selection clipboard -o",
+      ["*"] = "xclip -selection primary -o",
     },
     cache_enabled = 0,
 }
