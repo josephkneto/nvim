@@ -105,3 +105,11 @@ vim.api.nvim_create_autocmd('TermOpen', {
 bind('>', '>gv', 'v')
 bind('<', '<gv', 'v')
 
+-- Ctrl+v = ctrl+shift+v
+vim.api.nvim_set_keymap('n', '<C-v>', '"+p', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<C-v>', '<C-r>+', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<C-v>', '"+p', { noremap = true, silent = true })
+
+-- Ctrl+z = undo
+vim.api.nvim_set_keymap('n', '<C-z>', 'u', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<C-z>', '<C-o>u', { noremap = true, silent = true })

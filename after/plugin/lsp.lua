@@ -109,6 +109,8 @@ cmp.setup.cmdline(':', {
     }),
 })
 
+-- Show inline errors
+
 local signs = { Error = "E", Warn = "W", Hint = "H", Info = "I" }
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
@@ -122,6 +124,6 @@ vim.diagnostic.config({
     },
     signs = true,
     underline = true,
-    update_in_insert = false,
+    update_in_insert = false, -- Change here to see errors in both insert and normal modes
     severity_sort = true,
 })
