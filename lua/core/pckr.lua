@@ -97,6 +97,32 @@ require('pckr').add({
                 hop.hint_char1({ direction = { directions.AFTER_CURSOR, directions.BEFORE_CURSOR }, current_line_only = false })
             end, { remap = true })
         end
-    }
-
+    },
+    {
+        'jose-elias-alvarez/null-ls.nvim',
+        requires = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            require("null-ls").setup()
+        end
+    },
+    {
+        'folke/tokyonight.nvim',
+        config = function()
+            vim.cmd('colorscheme tokyonight')
+        end,
+    },
+    {
+        'EdenEast/nightfox.nvim',
+        config = function()
+            require('nightfox').setup({
+                options = {
+                    styles = {
+                        comments = "italic",
+                        keywords = "bold",
+                    },
+                },
+            })
+            vim.cmd('colorscheme nightfox')
+        end,
+    },
 })

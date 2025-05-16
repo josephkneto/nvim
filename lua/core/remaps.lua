@@ -104,3 +104,4 @@ vim.api.nvim_create_autocmd('TermOpen', {
 
 bind('>', '>gv', 'v')
 bind('<', '<gv', 'v')
+

@@ -1,0 +1,2 @@
+To change neovim's theme
+    :colorscheme <theme_name>
