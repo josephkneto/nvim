@@ -1,6 +1,6 @@
 # Neovim Configuração Pessoal
 
-Esta é a minha configuração personalizada do Neovim, focada em produtividade, navegação eficiente, integração com LSP, busca global, atalhos inspirados no VSCode e uma experiência moderna de desenvolvimento.
+Esta é a minha configuração personalizada do Neovim, focada em produtividade, navegação eficiente, integração com LSP, busca global, atalhos inspirados no VSCode, snippets customizados e uma experiência moderna de desenvolvimento.
 
 ---
 
@@ -9,6 +9,7 @@ Esta é a minha configuração personalizada do Neovim, focada em produtividade,
 - [Pré-requisitos](#pré-requisitos)
 - [Estrutura dos Arquivos](#estrutura-dos-arquivos)
 - [Principais Plugins](#principais-plugins)
+- [Snippets Customizados](#snippets-customizados)
 - [Funcionalidades e Atalhos](#funcionalidades-e-atalhos)
 - [Configurações Gerais](#configurações-gerais)
 - [Dicas de Uso](#dicas-de-uso)
@@ -37,7 +38,9 @@ Esta é a minha configuração personalizada do Neovim, focada em produtividade,
 │   ├── set.lua           # Opções do Neovim
 │   ├── remaps.lua        # Atalhos personalizados
 │   ├── pckr.lua          # Gerenciador de plugins
-│   └── null_ls.lua       # Integração com null-ls
+│   ├── null_ls.lua       # Integração com null-ls
+│   ├── cmp.lua           # Configuração do autocompletar (nvim-cmp)
+│   └── snippets.lua      # Snippets customizados para Python e JS/TS
 ├── init.lua              # Carrega o núcleo da configuração
 ├── README.md             # Este arquivo
 └── pack/github/start/    # Plugins instalados manualmente (ex: copilot.vim)
@@ -53,7 +56,8 @@ Esta é a minha configuração personalizada do Neovim, focada em produtividade,
 - **[stevearc/oil.nvim](https://github.com/stevearc/oil.nvim)**: Navegador de arquivos minimalista.
 - **[VonHeikemen/lsp-zero.nvim](https://github.com/VonHeikemen/lsp-zero.nvim)**: Configuração simplificada de LSP.
 - **[nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)**: Syntax highlighting avançado.
-- **[hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp)**: Autocompletar.
+- **[hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp)**: Autocompletar inteligente, priorizando snippets.
+- **[L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip)**: Snippets customizados e expansíveis.
 - **[github/copilot.vim](https://github.com/github/copilot.vim)**: GitHub Copilot.
 - **[stevearc/conform.nvim](https://github.com/stevearc/conform.nvim)**: Formatação automática.
 - **[jose-elias-alvarez/null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)**: Integração com formatadores e linters externos.
@@ -62,6 +66,19 @@ Esta é a minha configuração personalizada do Neovim, focada em produtividade,
 - **[tpope/vim-surround](https://github.com/tpope/vim-surround)**: Manipulação de surrounds.
 - **[phaazon/hop.nvim](https://github.com/phaazon/hop.nvim)**: Navegação rápida no buffer.
 - **[EdenEast/nightfox.nvim](https://github.com/EdenEast/nightfox.nvim)**, **[folke/tokyonight.nvim](https://github.com/folke/tokyonight.nvim)**, **[olimorris/onedarkpro.nvim](https://github.com/olimorris/onedarkpro.nvim)**: Temas.
+
+---
+
+## Snippets Customizados
+
+- Snippets práticos para **Python** e **JavaScript/TypeScript** em `lua/core/snippets.lua`.
+- Triggers descritivos e sem poluição do autocompletar (ex: `defd`, `class`, `func`, `arrow`, `rfc`, `test`, etc).
+- Os snippets aparecem primeiro nas sugestões do autocompletar.
+- Navegação fácil entre os campos do snippet usando `<Tab>` e `<S-Tab>`.
+- Exemplos:
+  - Python: `defd` para função com docstring, `class` para classe, `test` para teste, `try` para bloco try/except.
+  - JS/TS: `func` para função, `arrow` para arrow function, `rfc` para componente React, `use` para hook useState, `test` para teste Jest.
+- Totalmente integrados ao autocompletar (nvim-cmp + LuaSnip).
 
 ---
 
@@ -89,7 +106,7 @@ Esta é a minha configuração personalizada do Neovim, focada em produtividade,
 - `<leader>d` — (Se configurado) Ir para definição
 - Hover, renomear, formatação, etc. disponíveis via comandos LSP padrão
 
-### Edição e Produtividade
+### Edição, Snippets e Produtividade
 
 - `<C-s>` — Formata e salva o arquivo
 - `<leader>s` — Formata o arquivo
@@ -98,6 +115,10 @@ Esta é a minha configuração personalizada do Neovim, focada em produtividade,
 - `<C-x>` — Fecha o buffer sem salvar
 - `<C-v>` — Cola do clipboard do sistema
 - `<C-z>` — Undo
+- **Snippets:**
+  - Digite o trigger do snippet e pressione `<Tab>` para expandir
+  - Use `<Tab>` e `<S-Tab>` para navegar entre os campos do snippet
+  - Snippets aparecem primeiro no autocompletar
 
 ### Terminal Integrado
 
@@ -137,6 +158,8 @@ Esta é a minha configuração personalizada do Neovim, focada em produtividade,
 - **Plugins são gerenciados via pckr.nvim**. Para instalar/atualizar/remover, edite `lua/core/pckr.lua` e rode `:PckrSync`.
 - **LSP**: Instale servidores com `:Mason` ou configure no `lsp.lua`.
 - **Formatação**: O conform e null-ls cuidam de formatação automática ao salvar.
+- **Snippets**: Personalize ou adicione novos em `lua/core/snippets.lua`. Triggers descritivos evitam poluição do autocompletar.
+- **Autocompletar**: O nvim-cmp prioriza snippets nas sugestões. Use `<Tab>` para navegar.
 - **Atalhos de mouse**: O suporte depende do terminal. Se não funcionar, tente outro terminal ou use os atalhos de teclado.
 - **Temas**: Altere o tema editando o bloco correspondente em `pckr.lua`.
 
@@ -168,6 +191,9 @@ Para trocar o tema, altere o comando `vim.cmd('colorscheme ...')` no bloco do te
 
 - **Como instalar um novo plugin?**  
   Adicione no `lua/core/pckr.lua` e rode `:PckrSync`.
+
+- **Como personalizar ou remover snippets?**  
+  Edite o arquivo `lua/core/snippets.lua` e reinicie o Neovim.
 
 ---
 
