@@ -127,7 +127,7 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 -- Sobrescreve o comando de ir para definição para disparar o evento User/LspJumpToLocation
-vim.keymap.set('n', '<leader>d', function()
+vim.keymap.set('n', '<C-LeftMouse>', function()
     local params = vim.lsp.util.make_position_params()
     vim.lsp.buf_request(0, 'textDocument/definition', params, function(err, result, ctx, _)
         if result and not vim.tbl_isempty(result) then
