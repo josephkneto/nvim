@@ -85,6 +85,16 @@ require('pckr').add({
     'romainl/vim-cool',
 
     {
+        'nvim-tree/nvim-tree.lua',
+        requires = {
+            'nvim-tree/nvim-web-devicons',
+        },
+        config = function()
+            require("nvim-tree").setup()
+        end,
+    },
+
+    {
         'phaazon/hop.nvim',
         branch = 'v2', -- optional but strongly recommended
         config = function()

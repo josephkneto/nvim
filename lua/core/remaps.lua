@@ -1,5 +1,6 @@
 vim.g.mapleader = ' '
 vim.keymap.set("n", "<leader>e", vim.cmd.Oil)
+vim.keymap.set("n", "<C-b>", ":NvimTreeToggle<CR>", { desc = "Abrir barra lateral de arquivos (NvimTree)" })
 
 local function bind(key, cmd, mode, opts)
     if opts == nil then
