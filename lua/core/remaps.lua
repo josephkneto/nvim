@@ -114,3 +114,28 @@ vim.api.nvim_set_keymap('v', '<C-v>', '"+p', { noremap = true, silent = true })
 -- Ctrl+z = undo
 vim.api.nvim_set_keymap('n', '<C-z>', 'u', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<C-z>', '<C-o>u', { noremap = true, silent = true })
+
+-- Ctrl+Click para ir para definição (igual VSCode)
+vim.api.nvim_set_keymap('n', '<C-LeftMouse>', '<cmd>lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
+
+-- Fecha a location list automaticamente após ir para definição (LSP)
+vim.api.nvim_create_autocmd("User", {
+    pattern = "LspJumpToLocation",
+    callback = function()
+        vim.cmd("lclose")
+    end,
+})
+
+-- Sobrescreve o comando de ir para definição para disparar o evento User/LspJumpToLocation
+vim.keymap.set('n', '<leader>d', function()
+    local params = vim.lsp.util.make_position_params()
+    vim.lsp.buf_request(0, 'textDocument/definition', params, function(err, result, ctx, _)
+        if result and not vim.tbl_isempty(result) then
+            vim.lsp.util.jump_to_location(result[1], 'utf-8')
+            vim.api.nvim_exec_autocmds('User', {pattern = 'LspJumpToLocation'})
+        end
+    end)
+end, { desc = 'Ir para definição (LSP) e fechar location list' })
+
+-- <leader>r para buscar referências (Telescope LSP)
+vim.keymap.set('n', '<leader>r', ':Telescope lsp_references<CR>', { desc = 'Procurar referências (Telescope LSP)' })
