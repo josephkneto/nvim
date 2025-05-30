@@ -171,7 +171,7 @@ Esta é a minha configuração personalizada do Neovim, focada em produtividade,
 - **Tokyonight**
 - **Onedarkpro**
 
-Para trocar o tema, altere o comando `vim.cmd('colorscheme ...')` no bloco do tema desejado em `pckr.lua`.
+Para trocar o tema, altere o comando `vim.cmd('colorscheme ...')` no bloco do tema desejado em `set.lua`.
 
 ---
 
