@@ -32,3 +32,24 @@ vim.g.clipboard = {
 }
 
 vim.opt.timeout = false
+
+-- Tema padrão
+vim.cmd('colorscheme dracula') -- Você pode mudar para 'catppuccin' ou 'nightfox' se preferir
+
+-- Melhorias de busca
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- Melhorias de performance e usabilidade
+vim.opt.updatetime = 300  -- Melhor performance para LSP e git
+vim.opt.undofile = true   -- Mantém histórico de undo entre sessões
+vim.opt.signcolumn = "yes" -- Melhor integração com LSP
+vim.opt.mouse = "a"       -- Suporte a mouse quando necessário
+vim.opt.splitright = true -- Abre splits à direita
+vim.opt.splitbelow = true -- Abre splits abaixo
+vim.opt.wrap = false      -- Desativa quebra de linha automática
+vim.opt.swapfile = false  -- Desativa arquivos de swap (opcional, mas pode melhorar performance)
+
+-- Melhorias de performance
+vim.opt.lazyredraw = true -- Reduz redraw durante execução de macros
+vim.opt.ttimeoutlen = 0   -- Elimina delay ao pressionar ESC em modo insert

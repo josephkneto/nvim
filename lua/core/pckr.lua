@@ -67,7 +67,69 @@ require('pckr').add({
     {
         'olimorris/onedarkpro.nvim',
         config = function()
-            vim.cmd('colorscheme onedark')
+        end,
+    },
+    {
+        'catppuccin/nvim',
+        name = 'catppuccin',
+        priority = 1000,
+        config = function()
+            require('catppuccin').setup({
+                flavour = "mocha", -- latte, frappe, macchiato, mocha
+                background = { light = "latte", dark = "mocha" },
+                transparent_background = false,
+                term_colors = true,
+                integrations = {
+                    cmp = true,
+                    gitsigns = true,
+                    nvimtree = true,
+                    telescope = true,
+                    treesitter = true,
+                }
+            })
+        end,
+    },
+    {
+        'Mofiqul/dracula.nvim',
+        priority = 1000, -- Garante que o Dracula seja carregado por último
+        config = function()
+            require('dracula').setup({
+                -- customize dracula color palette
+                colors = {
+                    bg = "#282A36",
+                    fg = "#F8F8F2",
+                    selection = "#44475A",
+                    comment = "#6272A4",
+                    red = "#FF5555",
+                    orange = "#FFB86C",
+                    yellow = "#F1FA8C",
+                    green = "#50FA7B",
+                    purple = "#BD93F9",
+                    cyan = "#8BE9FD",
+                    pink = "#FF79C6",
+                    bright_red = "#FF6E67",
+                    bright_green = "#5AF78E",
+                    bright_yellow = "#F4F99D",
+                    bright_blue = "#CAA9FA",
+                    bright_magenta = "#FF92D0",
+                    bright_cyan = "#9AEDFE",
+                    bright_white = "#F8F8F2",
+                    menu = "#21222C",
+                    visual = "#3E4452",
+                    gutter_fg = "#4B5263",
+                    nontext = "#3B4048",
+                },
+                -- show the '~' characters after the end of buffers
+                show_end_of_buffer = true,
+                -- use transparent background
+                transparent_bg = false,
+                -- set custom lualine background color
+                lualine_bg_color = "#44475a",
+                -- set italic comment
+                italic_comment = true,
+                -- overrides the default highlights with table see `:h synIDattr`
+                overrides = {},
+            })
         end,
     },
     {
@@ -118,7 +180,7 @@ require('pckr').add({
     {
         'folke/tokyonight.nvim',
         config = function()
-            vim.cmd('colorscheme tokyonight')
+            -- vim.cmd('colorscheme tokyonight') -- Comentado para não sobrescrever o tema padrão
         end,
     },
     {
@@ -132,7 +194,127 @@ require('pckr').add({
                     },
                 },
             })
-            vim.cmd('colorscheme nightfox')
+            -- vim.cmd('colorscheme nightfox') -- Já estava comentado
         end,
+    },
+    {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons' },
+        config = function()
+            require('lualine').setup({
+                options = {
+                    theme = 'auto',
+                    globalstatus = true,
+                },
+            })
+        end
+    },
+    {
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require('gitsigns').setup()
+        end
+    },
+    {
+        'folke/which-key.nvim',
+        config = function()
+            require('which-key').setup()
+        end
+    },
+    {
+        'folke/trouble.nvim',
+        requires = 'nvim-tree/nvim-web-devicons',
+        config = function()
+            require('trouble').setup()
+        end
+    },
+    {
+        'folke/todo-comments.nvim',
+        requires = 'nvim-lua/plenary.nvim',
+        config = function()
+            require('todo-comments').setup()
+        end
+    },
+    {
+        'folke/zen-mode.nvim',
+        config = function()
+            require('zen-mode').setup()
+        end
+    },
+    -- nvim-ufo para melhor folding
+    {
+        'kevinhwang91/nvim-ufo',
+        requires = {
+            'kevinhwang91/promise-async',
+            'nvim-treesitter/nvim-treesitter',
+        },
+        config = function()
+            -- Configuração do nvim-ufo
+            vim.o.foldlevel = 99 -- Garante que os folds comecem abertos
+            vim.o.foldlevelstart = 99 -- Garante que os folds comecem abertos ao abrir um arquivo
+            vim.o.foldenable = true
+
+            require('ufo').setup({
+                provider_selector = function(bufnr, filetype, buftype)
+                    return {'treesitter', 'indent'}
+                end,
+                fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
+                    local newVirtText = {}
+                    local suffix = (' 󰁂 %d '):format(endLnum - lnum)
+                    local sufWidth = vim.fn.strdisplaywidth(suffix)
+                    local targetWidth = width - sufWidth
+                    local curWidth = 0
+                    for _, chunk in ipairs(virtText) do
+                        local chunkText = chunk[1]
+                        local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+                        if targetWidth > curWidth + chunkWidth then
+                            table.insert(newVirtText, chunk)
+                        else
+                            chunkText = truncate(chunkText, targetWidth - curWidth)
+                            local hlGroup = chunk[2]
+                            table.insert(newVirtText, {chunkText, hlGroup})
+                            chunkWidth = vim.fn.strdisplaywidth(chunkText)
+                            if curWidth + chunkWidth < targetWidth then
+                                suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
+                            end
+                            break
+                        end
+                        curWidth = curWidth + chunkWidth
+                    end
+                    table.insert(newVirtText, {suffix, 'MoreMsg'})
+                    return newVirtText
+                end,
+                -- Configurações para manter folds abertos por padrão
+                open_fold_hl_timeout = 0,
+                close_fold_kinds = {},
+                preview = {
+                    win_config = {
+                        border = 'rounded',
+                        winblend = 0,
+                        winhighlight = 'Normal:Normal'
+                    }
+                }
+            })
+
+            -- Força a abertura de todos os folds em vários eventos
+            local function openAllFolds()
+                vim.cmd('normal zR')
+                require('ufo').openAllFolds()
+            end
+
+            -- Adiciona o comando em vários eventos para garantir
+            vim.api.nvim_create_autocmd({
+                'BufReadPost',
+                'FileReadPost',
+                'BufNewFile',
+                'BufWinEnter',
+                'WinEnter'
+            }, {
+                callback = openAllFolds
+            })
+
+            -- Comando personalizado para forçar abertura de folds
+            vim.api.nvim_create_user_command('OpenAllFolds', openAllFolds, {})
+        end
     },
 })

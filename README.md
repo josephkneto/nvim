@@ -34,51 +34,58 @@ Esta é a minha configuração personalizada do Neovim, focada em produtividade,
 .config/nvim/
 ├── after/plugin/         # Configurações específicas de plugins
 ├── lua/core/             # Configurações principais em Lua
-│   ├── init.lua
+│   ├── init.lua          # Ponto de entrada da configuração
 │   ├── set.lua           # Opções do Neovim
 │   ├── remaps.lua        # Atalhos personalizados
 │   ├── pckr.lua          # Gerenciador de plugins
 │   ├── null_ls.lua       # Integração com null-ls
 │   ├── cmp.lua           # Configuração do autocompletar (nvim-cmp)
-│   └── snippets.lua      # Snippets customizados para Python e JS/TS
+│   └── snippets.lua      # Snippets customizados
 ├── init.lua              # Carrega o núcleo da configuração
-├── README.md             # Este arquivo
-└── pack/github/start/    # Plugins instalados manualmente (ex: copilot.vim)
+└── README.md             # Este arquivo
 ```
 
 ---
 
 ## Principais Plugins
 
-- **[pckr.nvim](https://github.com/lewis6991/pckr.nvim)**: Gerenciador de plugins.
-- **[nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)**: Busca de arquivos, texto, referências, etc.
-- **[nvim-tree/nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)**: Barra lateral de arquivos (estilo VSCode).
-- **[stevearc/oil.nvim](https://github.com/stevearc/oil.nvim)**: Navegador de arquivos minimalista.
-- **[VonHeikemen/lsp-zero.nvim](https://github.com/VonHeikemen/lsp-zero.nvim)**: Configuração simplificada de LSP.
-- **[nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)**: Syntax highlighting avançado.
-- **[hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp)**: Autocompletar inteligente, priorizando snippets.
-- **[L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip)**: Snippets customizados e expansíveis.
-- **[github/copilot.vim](https://github.com/github/copilot.vim)**: GitHub Copilot.
-- **[stevearc/conform.nvim](https://github.com/stevearc/conform.nvim)**: Formatação automática.
-- **[jose-elias-alvarez/null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)**: Integração com formatadores e linters externos.
-- **[windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs)**: Autopares de parênteses/chaves.
-- **[tpope/vim-commentary](https://github.com/tpope/vim-commentary)**: Comentários rápidos.
-- **[tpope/vim-surround](https://github.com/tpope/vim-surround)**: Manipulação de surrounds.
-- **[phaazon/hop.nvim](https://github.com/phaazon/hop.nvim)**: Navegação rápida no buffer.
-- **[EdenEast/nightfox.nvim](https://github.com/EdenEast/nightfox.nvim)**, **[folke/tokyonight.nvim](https://github.com/folke/tokyonight.nvim)**, **[olimorris/onedarkpro.nvim](https://github.com/olimorris/onedarkpro.nvim)**: Temas.
+### Navegação e Interface
 
----
+- **[pckr.nvim](https://github.com/lewis6991/pckr.nvim)**: Gerenciador de plugins
+- **[nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)**: Busca de arquivos, texto, referências
+- **[nvim-tree/nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)**: Barra lateral de arquivos
+- **[stevearc/oil.nvim](https://github.com/stevearc/oil.nvim)**: Navegador de arquivos minimalista
+- **[kevinhwang91/nvim-ufo](https://github.com/kevinhwang91/nvim-ufo)**: Sistema de folding avançado
+- **[nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)**: Barra de status moderna
 
-## Snippets Customizados
+### LSP e Autocompletar
 
-- Snippets práticos para **Python** e **JavaScript/TypeScript** em `lua/core/snippets.lua`.
-- Triggers descritivos e sem poluição do autocompletar (ex: `defd`, `class`, `func`, `arrow`, `rfc`, `test`, etc).
-- Os snippets aparecem primeiro nas sugestões do autocompletar.
-- Navegação fácil entre os campos do snippet usando `<Tab>` e `<S-Tab>`.
-- Exemplos:
-  - Python: `defd` para função com docstring, `class` para classe, `test` para teste, `try` para bloco try/except.
-  - JS/TS: `func` para função, `arrow` para arrow function, `rfc` para componente React, `use` para hook useState, `test` para teste Jest.
-- Totalmente integrados ao autocompletar (nvim-cmp + LuaSnip).
+- **[VonHeikemen/lsp-zero.nvim](https://github.com/VonHeikemen/lsp-zero.nvim)**: Configuração simplificada de LSP
+- **[nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)**: Syntax highlighting avançado
+- **[hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp)**: Autocompletar inteligente
+- **[L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip)**: Snippets customizados
+- **[github/copilot.vim](https://github.com/github/copilot.vim)**: GitHub Copilot
+
+### Produtividade
+
+- **[stevearc/conform.nvim](https://github.com/stevearc/conform.nvim)**: Formatação automática
+- **[jose-elias-alvarez/null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)**: Integração com formatadores
+- **[windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs)**: Autopares de parênteses/chaves
+- **[tpope/vim-commentary](https://github.com/tpope/vim-commentary)**: Comentários rápidos
+- **[tpope/vim-surround](https://github.com/tpope/vim-surround)**: Manipulação de surrounds
+- **[phaazon/hop.nvim](https://github.com/phaazon/hop.nvim)**: Navegação rápida no buffer
+- **[folke/which-key.nvim](https://github.com/folke/which-key.nvim)**: Ajuda com atalhos
+- **[folke/trouble.nvim](https://github.com/folke/trouble.nvim)**: Interface melhorada para diagnósticos
+- **[folke/todo-comments.nvim](https://github.com/folke/todo-comments.nvim)**: Gerenciamento de TODOs
+- **[folke/zen-mode.nvim](https://github.com/folke/zen-mode.nvim)**: Modo foco
+
+### Temas
+
+- **[Mofiqul/dracula.nvim](https://github.com/Mofiqul/dracula.nvim)**: Tema Dracula (padrão)
+- **[catppuccin/nvim](https://github.com/catppuccin/nvim)**: Tema Catppuccin
+- **[folke/tokyonight.nvim](https://github.com/folke/tokyonight.nvim)**: Tema Tokyo Night
+- **[olimorris/onedarkpro.nvim](https://github.com/olimorris/onedarkpro.nvim)**: Tema OneDark
+- **[EdenEast/nightfox.nvim](https://github.com/EdenEast/nightfox.nvim)**: Tema Nightfox
 
 ---
 
@@ -87,59 +94,58 @@ Esta é a minha configuração personalizada do Neovim, focada em produtividade,
 ### Navegação de Arquivos
 
 - `<leader>e` — Abre o Oil (navegador minimalista)
-- `<C-b>` — Abre/fecha a barra lateral do NvimTree (estilo VSCode)
-
-### Busca e Referências
-
+- `<C-b>` — Abre/fecha a barra lateral do NvimTree
 - `<leader>fa` — Buscar arquivos (Telescope)
 - `<leader>fg` — Buscar arquivos git (Telescope)
 - `<leader>fo` — Buscar arquivos recentes (Telescope)
-- `<leader>fs` — Buscar texto globalmente (Telescope, igual Ctrl+Shift+F do VSCode)
-- `<leader>F` — Alternativa para busca global de texto
-- `<leader>r` — Buscar todas as referências/usos do símbolo sob o cursor (Telescope)
-- `gr` — Atalho nativo LSP para referências
+- `<leader>fs` — Buscar texto globalmente (Telescope)
 
-### LSP (Language Server Protocol)
+### Folding (nvim-ufo)
 
-- `<C-LeftMouse>` — Ctrl+Click para ir para definição (igual VSCode, fecha a barra inferior automaticamente)
-- `gd` — Ir para definição (teclado)
-- `<leader>d` — (Se configurado) Ir para definição
-- Hover, renomear, formatação, etc. disponíveis via comandos LSP padrão
+- `zR` — Abre todos os folds
+- `zM` — Fecha todos os folds
+- `zr` — Abre folds exceto os mais profundos
+- `zm` — Fecha folds mais profundos
+- `zp` — Visualiza linhas dobradas sob o cursor
+- `:OpenAllFolds` — Comando para forçar abertura de todos os folds
 
-### Edição, Snippets e Produtividade
+### LSP e Autocompletar
+
+- `<C-LeftMouse>` — Ctrl+Click para ir para definição
+- `gd` — Ir para definição
+- `<leader>d` — Mostrar diagnósticos
+- `<leader>r` — Buscar referências
+- `<C-Space>` — Ativar autocompletar
+- `<Tab>` — Navegar entre sugestões e snippets
+
+### Edição e Produtividade
 
 - `<C-s>` — Formata e salva o arquivo
 - `<leader>s` — Formata o arquivo
 - `<leader>a` — Seleciona tudo
-- `<C-q>` — Fecha o buffer
-- `<C-x>` — Fecha o buffer sem salvar
-- `<C-v>` — Cola do clipboard do sistema
-- `<C-z>` — Undo
-- **Snippets:**
-  - Digite o trigger do snippet e pressione `<Tab>` para expandir
-  - Use `<Tab>` e `<S-Tab>` para navegar entre os campos do snippet
-  - Snippets aparecem primeiro no autocompletar
+- `<C-_>` — Comenta/descomenta
+- `<leader>z` — Ativa modo zen
+- `<leader>td` — Gerencia TODOs
+- `<leader>xx` — Abre Trouble (diagnósticos)
 
-### Terminal Integrado
+### Terminal
 
 - `<leader>t` — Abre terminal na horizontal
 - `<C-q>` (no terminal) — Sai do modo terminal
 - `<C-d>` (no terminal) — Fecha o terminal
 
-### Movimentação e Seleção
+### Splits e Buffers
 
-- `kj` (no modo insert) — Sai para o modo normal
-- `J`/`K` (no modo visual) — Move linhas selecionadas para baixo/cima
-- `>`, `<` (no modo visual) — Indenta mantendo seleção
-
-### Comentários e Surround
-
-- `<C-_>` — Comenta/descomenta linha ou seleção
-- Comandos do vim-surround para manipular parênteses, aspas, etc.
+- `<leader>sv` — Split vertical
+- `<leader>sh` — Split horizontal
+- `<C-q>` — Fecha buffer
+- `<C-x>` — Fecha buffer sem salvar
 
 ---
 
 ## Configurações Gerais
+
+### Visual
 
 - **Números de linha** ativados
 - **Scrolloff** de 6 linhas
@@ -148,28 +154,52 @@ Esta é a minha configuração personalizada do Neovim, focada em produtividade,
 - **Cores verdadeiras** (termguicolors)
 - **Autoindent** ativado
 - **Statusline global**
-- **Clipboard** integrado via xclip (Linux/WSL)
+- **Caracteres invisíveis** visíveis (tabs, espaços, etc.)
+
+### Performance
+
+- **Clipboard** integrado via xclip
 - **Timeout** desativado para comandos rápidos
+- **Updatetime** otimizado para LSP
+- **Lazyredraw** para melhor performance
+- **Folding** otimizado com nvim-ufo
+
+### LSP e Autocompletar
+
+- **LSP Zero** para configuração simplificada
+- **Treesitter** para syntax highlighting
+- **nvim-cmp** com snippets prioritários
+- **Conform** para formatação automática
+- **Null-ls** para integração com ferramentas externas
 
 ---
 
 ## Dicas de Uso
 
-- **Plugins são gerenciados via pckr.nvim**. Para instalar/atualizar/remover, edite `lua/core/pckr.lua` e rode `:PckrSync`.
-- **LSP**: Instale servidores com `:Mason` ou configure no `lsp.lua`.
-- **Formatação**: O conform e null-ls cuidam de formatação automática ao salvar.
-- **Snippets**: Personalize ou adicione novos em `lua/core/snippets.lua`. Triggers descritivos evitam poluição do autocompletar.
-- **Autocompletar**: O nvim-cmp prioriza snippets nas sugestões. Use `<Tab>` para navegar.
-- **Atalhos de mouse**: O suporte depende do terminal. Se não funcionar, tente outro terminal ou use os atalhos de teclado.
-- **Temas**: Altere o tema editando o bloco correspondente em `pckr.lua`.
+### Folding
+
+- Use `zp` para visualizar rapidamente o conteúdo de um fold
+- O sistema de folding é baseado em Treesitter para maior precisão
+- Os folds começam abertos por padrão
+- Use `:OpenAllFolds` se precisar forçar a abertura de todos os folds
+
+### LSP e Autocompletar
+
+- Instale servidores LSP com `:Mason`
+- Snippets aparecem primeiro nas sugestões
+- Use `<Tab>` para navegar entre campos de snippets
+- O autocompletar prioriza snippets e LSP
+
+### Produtividade
+
+- Use `which-key` para descobrir atalhos disponíveis
+- O modo zen (`<leader>z`) é útil para focar em uma parte do código
+- Trouble (`<leader>xx`) oferece uma interface melhorada para diagnósticos
+- Todo Comments (`<leader>td`) ajuda a gerenciar TODOs e FIXMEs
 
 ---
 
 ## Temas
-
-- **Nightfox** (padrão)
-- **Tokyonight**
-- **Onedarkpro**
 
 Para trocar o tema, altere o comando `vim.cmd('colorscheme ...')` no bloco do tema desejado em `set.lua`.
 
@@ -177,30 +207,37 @@ Para trocar o tema, altere o comando `vim.cmd('colorscheme ...')` no bloco do te
 
 ## Dúvidas Frequentes
 
+### Folding
+
+- **Como abrir todos os folds?**  
+  Use `zR` ou `:OpenAllFolds`
+
+- **Como visualizar o conteúdo de um fold sem abri-lo?**  
+  Use `zp` com o cursor sobre o fold
+
+### LSP e Autocompletar
+
+- **Como instalar um servidor LSP?**  
+  Use `:Mason` e selecione o servidor desejado
+
+- **Como ver diagnósticos?**  
+  Use `<leader>d` para float ou `<leader>xx` para Trouble
+
+### Navegação
+
 - **Como buscar por texto em todos os arquivos?**  
-  Use `<leader>fs` ou `<leader>F` para abrir o Telescope em modo de busca global.
+  Use `<leader>fs` ou `<leader>F`
 
-- **Como ir para a definição de uma função/classe?**  
-  Use `gd` ou Ctrl+Click (`<C-LeftMouse>`).
-
-- **Como ver todos os usos de uma função/classe?**  
-  Use `<leader>r` ou `gr`.
-
-- **Como abrir o navegador de arquivos?**  
-  Use `<C-b>` para NvimTree ou `<leader>e` para Oil.
-
-- **Como instalar um novo plugin?**  
-  Adicione no `lua/core/pckr.lua` e rode `:PckrSync`.
-
-- **Como personalizar ou remover snippets?**  
-  Edite o arquivo `lua/core/snippets.lua` e reinicie o Neovim.
+- **Como navegar entre buffers?**  
+  Use `<C-b>` para NvimTree ou `<leader>e` para Oil
 
 ---
 
 ## Créditos
 
-- Baseado em diversas configurações da comunidade Neovim.
-- Plugins de grandes autores do ecossistema Neovim.
+- Baseado em diversas configurações da comunidade Neovim
+- Plugins de grandes autores do ecossistema Neovim
+- Inspirado em configurações modernas e produtivas
 
 ---
 

@@ -139,3 +139,17 @@ end, { desc = 'Ir para definição (LSP) e fechar location list' })
 
 -- <leader>r para buscar referências (Telescope LSP)
 vim.keymap.set('n', '<leader>r', ':Telescope lsp_references<CR>', { desc = 'Procurar referências (Telescope LSP)' })
+
+-- Zen Mode
+vim.keymap.set('n', '<leader>z', '<cmd>ZenMode<cr>', { desc = 'Zen Mode' })
+
+-- Atalhos para splits
+vim.keymap.set('n', '<leader>sv', '<cmd>vsplit<cr>', { desc = 'Vertical Split' })
+vim.keymap.set('n', '<leader>sh', '<cmd>split<cr>', { desc = 'Horizontal Split' })
+
+-- Atalhos para folding
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds, { desc = 'Abrir todos os folds' })
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds, { desc = 'Fechar todos os folds' })
+vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds, { desc = 'Abrir folds exceto os mais profundos' })
+vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith, { desc = 'Fechar folds mais profundos' })
+vim.keymap.set('n', 'zp', require('ufo').peekFoldedLinesUnderCursor, { desc = 'Visualizar linhas dobradas sob o cursor' })
