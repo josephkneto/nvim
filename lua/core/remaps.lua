@@ -153,3 +153,10 @@ vim.keymap.set('n', 'zM', require('ufo').closeAllFolds, { desc = 'Fechar todos o
 vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds, { desc = 'Abrir folds exceto os mais profundos' })
 vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith, { desc = 'Fechar folds mais profundos' })
 vim.keymap.set('n', 'zp', require('ufo').peekFoldedLinesUnderCursor, { desc = 'Visualizar linhas dobradas sob o cursor' })
+
+-- Atalhos para Trouble.nvim (diagnostics modernos)
+vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { desc = "Toggle Trouble" })
+vim.keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", { desc = "Workspace Diagnostics" })
+vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", { desc = "Document Diagnostics" })
+vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { desc = "Quickfix" })
+vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { desc = "Location List" })

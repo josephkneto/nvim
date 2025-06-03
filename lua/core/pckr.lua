@@ -67,6 +67,26 @@ require('pckr').add({
     {
         'olimorris/onedarkpro.nvim',
         config = function()
+            require('onedarkpro').setup({
+                options = {
+                    comments = "italic",
+                    keywords = "bold",
+                    bold = true,
+                    italic = true,
+                    underline = true,
+                    cursorline = true,
+                    transparency = false,
+                },
+                colors = {
+                    bg = '#282c34',
+                    fg = '#abb2bf',
+                },
+                highlights = {
+                    Comment = { fg = '#5c6370', italic = true },
+                    String = { fg = '#98c379' },
+                    Function = { fg = '#61afef', bold = true },
+                },
+            })
         end,
     },
     {
@@ -206,6 +226,17 @@ require('pckr').add({
                     theme = 'auto',
                     globalstatus = true,
                 },
+                sections = {
+                    lualine_a = { 'mode' },
+                    lualine_b = { 'branch' },
+                    lualine_c = {
+                        'filename',
+                        { 'diagnostics', sources = { 'nvim_diagnostic' } },
+                    },
+                    lualine_x = { 'encoding', 'fileformat', 'filetype' },
+                    lualine_y = { 'progress' },
+                    lualine_z = { 'location' }
+                },
             })
         end
     },
@@ -250,13 +281,13 @@ require('pckr').add({
         },
         config = function()
             -- Configuração do nvim-ufo
-            vim.o.foldlevel = 99 -- Garante que os folds comecem abertos
+            vim.o.foldlevel = 99      -- Garante que os folds comecem abertos
             vim.o.foldlevelstart = 99 -- Garante que os folds comecem abertos ao abrir um arquivo
             vim.o.foldenable = true
 
             require('ufo').setup({
                 provider_selector = function(bufnr, filetype, buftype)
-                    return {'treesitter', 'indent'}
+                    return { 'treesitter', 'indent' }
                 end,
                 fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
                     local newVirtText = {}
@@ -272,7 +303,7 @@ require('pckr').add({
                         else
                             chunkText = truncate(chunkText, targetWidth - curWidth)
                             local hlGroup = chunk[2]
-                            table.insert(newVirtText, {chunkText, hlGroup})
+                            table.insert(newVirtText, { chunkText, hlGroup })
                             chunkWidth = vim.fn.strdisplaywidth(chunkText)
                             if curWidth + chunkWidth < targetWidth then
                                 suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
@@ -281,7 +312,7 @@ require('pckr').add({
                         end
                         curWidth = curWidth + chunkWidth
                     end
-                    table.insert(newVirtText, {suffix, 'MoreMsg'})
+                    table.insert(newVirtText, { suffix, 'MoreMsg' })
                     return newVirtText
                 end,
                 -- Configurações para manter folds abertos por padrão

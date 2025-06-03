@@ -61,3 +61,40 @@ vim.opt.guifont = "FiraCode Nerd Font:h12" -- Você pode ajustar o tamanho (h12)
 vim.g.have_nerd_font = true -- Indica que estamos usando uma fonte Nerd Font
 vim.opt.conceallevel = 2 -- Habilita concealing para ligaduras
 vim.opt.concealcursor = "n" -- Mantém o concealing mesmo no modo normal
+
+-- =============================
+-- Diagnostics modernos (LSP)
+-- =============================
+
+-- Ícones personalizados para diagnostics
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+-- Configuração dos diagnostics
+vim.diagnostic.config({
+  virtual_text = false, -- Desativa texto inline (fica poluído)
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+  float = {
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
+  },
+})
+
+-- Atalho para mostrar diagnostics do cursor
+vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show diagnostics" })
+
+-- Highlights customizados (opcional, ajuste conforme seu tema)
+vim.cmd [[
+  highlight DiagnosticError guifg=#FF5555
+  highlight DiagnosticWarn  guifg=#F1FA8C
+  highlight DiagnosticInfo  guifg=#8BE9FD
+  highlight DiagnosticHint  guifg=#50FA7B
+]]
