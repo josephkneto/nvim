@@ -22,7 +22,7 @@ lsp.use('clangd', {
 
 lsp.use('pyright', {
     capabilities = cmp_nvim_lsp.default_capabilities(),
-})
+    })
 
 lsp.on_attach(function(_, bufnr)
     local opts = { buffer = bufnr, remap = true }

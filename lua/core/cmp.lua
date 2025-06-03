@@ -18,15 +18,19 @@ cmp.setup({
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
+        ['<Tab>'] = function(fallback)
+            -- Prioriza Copilot se houver sugestão
+            local copilot = vim.fn['copilot#Accept']
+            if copilot ~= nil and vim.fn['copilot#GetDisplayedSuggestion'] and vim.fn['copilot#GetDisplayedSuggestion']() ~= '' then
+                vim.api.nvim_feedkeys(vim.fn['copilot#Accept']('<Tab>'), 'n', true)
+            elseif cmp.visible() then
                 cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jump()
             else
                 fallback()
             end
-        end, { 'i', 's' }),
+        end,
         ['<S-Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()

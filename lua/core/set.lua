@@ -53,3 +53,11 @@ vim.opt.swapfile = false  -- Desativa arquivos de swap (opcional, mas pode melho
 -- Melhorias de performance
 vim.opt.lazyredraw = true -- Reduz redraw durante execução de macros
 vim.opt.ttimeoutlen = 0   -- Elimina delay ao pressionar ESC em modo insert
+
+-- Configurações para ligaduras
+vim.opt.guifont = "FiraCode Nerd Font:h12" -- Você pode ajustar o tamanho (h12) conforme necessário
+
+-- Configurações para ligaduras
+vim.g.have_nerd_font = true -- Indica que estamos usando uma fonte Nerd Font
+vim.opt.conceallevel = 2 -- Habilita concealing para ligaduras
+vim.opt.concealcursor = "n" -- Mantém o concealing mesmo no modo normal
