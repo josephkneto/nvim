@@ -107,6 +107,7 @@ Esta é a minha configuração personalizada do Neovim, focada em produtividade,
 - `zr` — Abre folds exceto os mais profundos
 - `zm` — Fecha folds mais profundos
 - `zp` — Visualiza linhas dobradas sob o cursor
+- `za` — Toggle linhas dobradas abaixo do cursor
 - `:OpenAllFolds` — Comando para forçar abertura de todos os folds
 
 ### LSP e Autocompletar
